@@ -1,0 +1,32 @@
+[
+  {
+    "id": "qa_001",
+    "category": "factual",
+    "input": "What is the capital city of Australia?",
+    "system_prompt": "You are a helpful geography assistant. Answer concisely.",
+    "reference_answer": "The capital of Australia is Canberra.",
+    "response_a": "The capital of Australia is Canberra. It became the capital in 1913 as a compromise between Sydney and Melbourne.",
+    "response_b": "Australia's capital is Sydney, which is the largest and most well-known city in the country.",
+    "human_label": {
+      "winner": "Model_A",
+      "overall_score_a": 5,
+      "overall_score_b": 1,
+      "notes": "Response B is factually wrong. Canberra is the capital, not Sydney."
+    }
+  },
+  {
+    "id": "qa_002",
+    "category": "science",
+    "input": "Explain the difference between mitosis and meiosis in simple terms.",
+    "system_prompt": "You are a biology tutor. Use simple, clear language suitable for high school students.",
+    "reference_answer": "Mitosis produces two identical daughter cells for growth and repair. Meiosis produces four genetically unique cells for sexual reproduction.",
+    "response_a": "Mitosis is the process where one cell divides into two identical cells. It's used for growth and tissue repair. Meiosis, on the other hand, produces four cells with half the chromosomes, used for making eggs and sperm.",
+    "response_b": "Mitosis and meiosis are both forms of cell division. Mitosis creates clones of the parent cell (2 cells), while meiosis creates gametes (4 cells with half the genetic material). Mitosis = body growth; Meiosis = reproduction.",
+    "human_label": {
+      "winner": "Tie",
+      "overall_score_a": 4,
+      "overall_score_b": 4,
+      "notes": "Both are accurate and appropriately simplified."
+    }
+  }
+]

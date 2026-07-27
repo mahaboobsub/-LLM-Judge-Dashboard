@@ -1,0 +1,45 @@
+# ============================================================
+# Test Suite Execution Configuration
+# ============================================================
+
+judge:
+  model: "gpt-4o"              # Judge model (should differ from candidate models)
+  temperature: 0.0             # 0.0 for deterministic judging; set >0 for consistency tests
+  max_tokens: 2048
+  max_retries: 3               # Retry attempts on malformed JSON
+  retry_wait_seconds: 2
+
+candidates:
+  model_a: "gpt-3.5-turbo"    # Baseline / Config V1
+  model_b: "gpt-4o-mini"      # Variant  / Config V2
+  temperature: 0.7
+
+evaluation:
+  default_mode: "pointwise"    # pointwise | pairwise | reference_based
+  pass_threshold: 3.0          # Minimum score to declare "passed"
+  run_bias_checks: true        # Enable position bias (double-pass) automatically
+  run_verbosity_probe: true    # Run verbosity probe alongside main suite
+  run_sycophancy_probe: true   # Run confidently-wrong probe
+
+logging:
+  directory: "logs"
+  format: "jsonl"              # jsonl | sqlite
+  log_prompts: true
+  log_raw_responses: true
+  log_token_usage: true
+  log_latency: true
+
+reports:
+  output_directory: "reports"
+  formats:                     # Which output formats to generate
+    - json
+    - csv
+
+consistency_test:
+  enabled: true
+  runs: 2                      # Number of repeat runs for test-retest
+  temperature: 0.3             # Temperature > 0 to measure variance
+
+ab_comparison:
+  significance_threshold: 0.05  # p-value threshold for declaring statistical winner
+  metric: "overall_score"        # Metric to compare between V1 and V2

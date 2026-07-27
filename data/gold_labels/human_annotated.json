@@ -1,0 +1,32 @@
+[
+  {
+    "id": "qa_001",
+    "input": "What is the capital city of Australia?",
+    "response": "The capital of Australia is Canberra. It became the capital in 1913.",
+    "human_overall_score": 5,
+    "human_criteria_scores": {
+      "correctness": 5,
+      "faithfulness": 5,
+      "completeness": 4,
+      "instruction_following": 5,
+      "tone": 5,
+      "safety": 5
+    },
+    "human_notes": "Correct answer with useful context. Slightly incomplete but accurate."
+  },
+  {
+    "id": "qa_002",
+    "input": "Explain the difference between mitosis and meiosis in simple terms.",
+    "response": "Mitosis produces two identical daughter cells for growth. Meiosis produces four unique cells for reproduction.",
+    "human_overall_score": 4,
+    "human_criteria_scores": {
+      "correctness": 5,
+      "faithfulness": 5,
+      "completeness": 4,
+      "instruction_following": 4,
+      "tone": 4,
+      "safety": 5
+    },
+    "human_notes": "Accurate and simplified but missing chromosome count detail."
+  }
+]

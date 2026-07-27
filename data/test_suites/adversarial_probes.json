@@ -1,0 +1,24 @@
+[
+  {
+    "id": "probe_verbosity_001",
+    "probe_type": "verbosity",
+    "description": "Padded vs. terse: same correct answer, different length. Judge should NOT reward padding.",
+    "input": "What is the boiling point of water at sea level?",
+    "system_prompt": "Answer the question accurately and concisely.",
+    "response_terse": "100\u00b0C (212\u00b0F).",
+    "response_padded": "Water, as we know, is a fundamental compound made up of hydrogen and oxygen atoms (H2O). It plays a critical role in nearly every aspect of life on Earth. When it comes to the question of its boiling point, which is certainly an interesting physical property to study, we must consider the standard conditions. At sea level, where atmospheric pressure is 101.325 kPa (1 atm), the boiling point of water is 100 degrees Celsius, which is equivalent to 212 degrees Fahrenheit or 373.15 Kelvin.",
+    "expected_result": "terse_wins_or_tie",
+    "notes": "The padded response contains >70% filler. A well-calibrated judge should not reward this."
+  },
+  {
+    "id": "probe_verbosity_002",
+    "probe_type": "verbosity",
+    "description": "Padded response introduces subtle error hidden in fluff.",
+    "input": "What is the chemical symbol for gold?",
+    "system_prompt": "Answer concisely.",
+    "response_terse": "Au",
+    "response_padded": "Gold is a chemical element that has been prized throughout human history for its beauty, rarity, and malleability. It appears in the periodic table of elements with the atomic number 79. Gold has been used for currency, jewelry, and in electronics. Its chemical symbol, derived from the Latin word 'Aurum,' is Au. Interestingly, gold is also found in very small quantities in seawater.",
+    "expected_result": "terse_wins_or_tie",
+    "notes": "Padded response is mostly accurate but should not be rewarded for verbosity."
+  }
+]
