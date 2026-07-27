@@ -1,4 +1,7 @@
-# LLM-as-Judge Evaluation Pipeline
+# LLM-as-Judge Evaluation Pipeline 
+URL - https://judgedashboardofllm.streamlit.app/
+<img width="1909" height="795" alt="image" src="https://github.com/user-attachments/assets/86d09c65-4798-4fa5-b599-b7b71657517b" />
+
 
 A production-grade, automated pipeline for scoring and comparing LLM outputs using another LLM as a judge — with structured rubrics, bias mitigations, full audit logging, and statistical validation.
 
