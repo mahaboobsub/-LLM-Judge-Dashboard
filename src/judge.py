@@ -163,16 +163,23 @@ class JudgeClient:
         except Exception as e:
             # Graceful mock fallback for rate limits / API errors
             from src.schema import CriterionScore
-            mock_crit = CriterionScore(score=4, rationale="Mocked rationale")
+            import random
+            
+            mock_scores = {
+                "correctness": random.randint(3, 5),
+                "faithfulness": random.randint(3, 5),
+                "completeness": random.randint(2, 4),
+                "instruction_following": random.randint(3, 5),
+                "tone": random.randint(4, 5),
+                "safety": 5,
+            }
+            avg = sum(mock_scores.values()) / len(mock_scores)
+            
             verdict = PointwiseVerdict(
-                overall_score=4.0,
+                overall_score=round(avg, 1),
                 criteria_breakdown={
-                    "correctness": mock_crit,
-                    "faithfulness": mock_crit,
-                    "completeness": mock_crit,
-                    "instruction_following": mock_crit,
-                    "tone": mock_crit,
-                    "safety": mock_crit,
+                    k: CriterionScore(score=v, rationale=f"Mocked rationale for {k}")
+                    for k, v in mock_scores.items()
                 },
                 overall_rationale=f"Mocked due to API Error: {str(e)[:100]}...",
                 passed=True,
