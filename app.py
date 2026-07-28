@@ -37,10 +37,11 @@ judge_model = st.sidebar.selectbox(
 if st.sidebar.button("Run Validation Suite 🧪"):
     with st.spinner(f"Running Validation Suite with {judge_model}... this may take a minute."):
         import subprocess
+        import sys
         env = os.environ.copy()
         env["JUDGE_MODEL"] = judge_model
         env["PYTHONIOENCODING"] = "utf-8"
-        result = subprocess.run(["python", "main.py", "validate"], capture_output=True, text=True, env=env)
+        result = subprocess.run([sys.executable, "main.py", "validate"], capture_output=True, text=True, env=env)
         if result.returncode == 0:
             st.sidebar.success("Validation Suite completed successfully!")
             st.rerun()
@@ -51,10 +52,11 @@ if st.sidebar.button("Run Validation Suite 🧪"):
 if st.sidebar.button("Run A/B Comparison 📊"):
     with st.spinner(f"Running A/B Comparison with {judge_model}... this may take a minute."):
         import subprocess
+        import sys
         env = os.environ.copy()
         env["JUDGE_MODEL"] = judge_model
         env["PYTHONIOENCODING"] = "utf-8"
-        result = subprocess.run(["python", "main.py", "ab-report"], capture_output=True, text=True, env=env)
+        result = subprocess.run([sys.executable, "main.py", "ab-report"], capture_output=True, text=True, env=env)
         if result.returncode == 0:
             st.sidebar.success("A/B Comparison completed successfully!")
             st.rerun()
