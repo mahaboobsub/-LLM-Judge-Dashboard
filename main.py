@@ -33,6 +33,13 @@ import os
 import sys
 from typing import Any, Dict, List, Optional
 
+# Force UTF-8 encoding for standard output to prevent crash when printing emojis on Windows
+if sys.stdout.encoding != 'utf-8' and hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 # Load .env if present
 try:
     from dotenv import load_dotenv
