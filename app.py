@@ -30,7 +30,7 @@ st.sidebar.subheader("Actions")
 # Let user choose model to bypass specific model rate limits
 judge_model = st.sidebar.selectbox(
     "Judge Model", 
-    ["gemini-2.5-flash", "gemini-2.0-flash", "gpt-4o-mini", "gpt-3.5-turbo"],
+    ["gemini-2.5-flash", "gemini-2.0-flash", "gpt-4o-mini", "gpt-3.5-turbo", "claude-3-5-sonnet-20240620", "claude-3-haiku-20240307"],
     help="If you hit a rate limit, try switching to a different model!"
 )
 
