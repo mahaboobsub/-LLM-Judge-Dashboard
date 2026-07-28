@@ -139,7 +139,7 @@ elif page == "Validation Report":
     else:
         # Kappa section
         st.subheader("1. Human/Gold Label Agreement")
-        kappa_data = val_data.get("kappa_agreement", {})
+        kappa_data = val_data.get("kappa_validation", {})
         
         col1, col2, col3 = st.columns(3)
         col1.metric("Exact Agreement", f"{kappa_data.get('exact_agreement_rate', 0):.1%}")
@@ -151,14 +151,13 @@ elif page == "Validation Report":
         st.subheader("2. Bias Resistance (Adversarial Probes)")
         st.markdown("Validates whether the judge is fooled by **verbosity bias** (padded fluff) or **sycophancy** (confident but incorrect).")
         
-        probe_data = val_data.get("adversarial_probes", {})
+        probe_data = val_data.get("adversarial_validation", {})
         if probe_data:
             probe_types = []
             pass_rates = []
-            for p_type, stats in probe_data.items():
-                if p_type != "overall":
-                    probe_types.append(p_type.capitalize())
-                    pass_rates.append(stats.get("pass_rate", 0))
+            for p_type, stats in probe_data.get("by_type", {}).items():
+                probe_types.append(p_type.capitalize())
+                pass_rates.append(stats.get("pass_rate", 0))
                     
             fig = px.bar(
                 x=probe_types, 
@@ -170,7 +169,7 @@ elif page == "Validation Report":
             fig.update_layout(yaxis_tickformat='.0%')
             st.plotly_chart(fig, use_container_width=True)
             
-            st.success(f"✅ Judge passed {probe_data.get('overall', {}).get('passed', 0)} / {probe_data.get('overall', {}).get('total', 0)} adversarial probes.")
+            st.success(f"✅ Judge passed {probe_data.get('passed_probes', 0)} / {probe_data.get('total_probes', 0)} adversarial probes.")
         else:
             st.info("No adversarial probe data available.")
 
