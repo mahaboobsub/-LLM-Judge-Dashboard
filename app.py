@@ -41,7 +41,7 @@ if st.sidebar.button("Run Validation Suite 🧪"):
         env = os.environ.copy()
         env["JUDGE_MODEL"] = judge_model
         env["PYTHONIOENCODING"] = "utf-8"
-        result = subprocess.run([sys.executable, "main.py", "validate"], capture_output=True, text=True, env=env)
+        result = subprocess.run([sys.executable, "main.py", "validate"], capture_output=True, text=True, env=env, encoding="utf-8")
         if result.returncode == 0:
             st.sidebar.success("Validation Suite completed successfully!")
             st.rerun()
@@ -56,7 +56,7 @@ if st.sidebar.button("Run A/B Comparison 📊"):
         env = os.environ.copy()
         env["JUDGE_MODEL"] = judge_model
         env["PYTHONIOENCODING"] = "utf-8"
-        result = subprocess.run([sys.executable, "main.py", "ab-report"], capture_output=True, text=True, env=env)
+        result = subprocess.run([sys.executable, "main.py", "ab-report"], capture_output=True, text=True, env=env, encoding="utf-8")
         if result.returncode == 0:
             st.sidebar.success("A/B Comparison completed successfully!")
             st.rerun()
