@@ -28,11 +28,20 @@ st.sidebar.markdown("---")
 st.sidebar.subheader("Actions")
 
 # Let user choose model to bypass specific model rate limits
-judge_model = st.sidebar.selectbox(
+MODEL_MAPPING = {
+    "Claude 3.5 Sonnet": "anthropic/claude-3-5-sonnet-20240620",
+    "Claude 3 Haiku": "anthropic/claude-3-haiku-20240307",
+    "Gemini 2.5 Flash": "gemini/gemini-2.5-flash",
+    "Gemini 2.0 Flash": "gemini/gemini-2.0-flash",
+    "GPT-4o Mini": "gpt-4o-mini",
+    "GPT-3.5 Turbo": "gpt-3.5-turbo",
+}
+ui_model = st.sidebar.selectbox(
     "Judge Model", 
-    ["gemini-2.5-flash", "gemini-2.0-flash", "gpt-4o-mini", "gpt-3.5-turbo", "claude-3-5-sonnet-20240620", "claude-3-haiku-20240307"],
+    list(MODEL_MAPPING.keys()),
     help="If you hit a rate limit, try switching to a different model!"
 )
+judge_model = MODEL_MAPPING[ui_model]
 
 if st.sidebar.button("Run Validation Suite 🧪"):
     with st.spinner(f"Running Validation Suite with {judge_model}... this may take a minute."):
